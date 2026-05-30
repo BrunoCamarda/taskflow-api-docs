@@ -1,0 +1,71 @@
+---
+title: "Errors"
+description: "A technical reference guide for handling TaskFlow API errors and status codes."
+---
+
+TaskFlow utilizes standard HTTP response codes and a flat JSON structure to indicate the success or failure of API requests.
+
+---
+
+## Error Schema
+
+Every error response returns a standard JSON object containing the generic error status classification and a descriptive, human-readable message.
+
+```json
+{
+  "error": "Not Found",
+  "message": "No project found with project_id 'abc123'."
+}
+```
+
+---
+
+## HTTP Status Codes
+
+The API enforces three specific error status codes depending on the nature of the failure:
+
+| Status | Category | Description |
+| :--- | :--- | :--- |
+| `400 Bad Request` | Client Error | The request contains missing mandatory fields, invalid data types, or unsupported state values. |
+| `401 Unauthorized` | Client Error | The request lacks valid authentication credentials in the header. |
+| `404 Not Found` | Client Error | The server cannot find the requested resource ID. |
+
+---
+
+## Troubleshooting Scenarios
+
+### Authentication Failure (`401 Unauthorized`)
+Occurs when the `Authorization` header is missing, malformed, or contains an incorrect API token.
+
+* **Resolution:** Ensure your header includes the exact format `Bearer <api_key>`. Review the setup steps in the [Authentication Guide](/authentication).
+
+```json
+{
+  "error": "Unauthorized",
+  "message": "Missing or invalid API key. Provide a valid key in the Authorization header as: Bearer <api_key>"
+}
+```
+
+### Missing Resource (`404 Not Found`)
+Occurs when operating on a project or task identifier that does not exist in the environment.
+
+* **Resolution:** Verify if the resource ID was properly created via `POST /projects` or `POST /tasks` before querying it.
+
+```json
+{
+  "error": "Not Found",
+  "message": "No project found with project_id 'abc123'. Create a project first using POST /projects."
+}
+```
+
+### Validation Failure (`400 Bad Request`)
+Occurs when mandatory body parameters (like `name` or `title`) are missing, or when an invalid state parameter is submitted.
+
+* **Resolution:** Double-check that your payloads match the strict definitions required in the API Reference guides.
+
+```json
+{
+  "error": "Bad Request",
+  "message": "Invalid status 'completed'. Allowed values are: pending, in_progress, done."
+}
+```

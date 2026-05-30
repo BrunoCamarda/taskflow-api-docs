@@ -1,0 +1,12 @@
+---
+title: 'List tasks in a project'
+openapi: 'GET /projects/{project_id}/tasks'
+---
+
+<Note>
+  **Data Consistency:** The `tasks` field is guaranteed to be an array. For new projects with no activity, the API returns an empty list `[]` rather than a null value.
+</Note>
+
+## Request Specifications
+
+The specification below defines the required payload format and the expected structure for successful responses.

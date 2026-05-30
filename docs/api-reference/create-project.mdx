@@ -1,0 +1,13 @@
+---
+title: "Create a Project"
+openapi: "POST /projects"
+---
+
+## Integration Rules
+
+* **Required Payload:** The `name` field is mandatory and cannot be empty. 
+* **State Persistence:** Save the returned `project_id` from the response. You will need to pass this identifier in the request body of all subsequent task operations.
+
+## Request Specifications
+
+The specification below defines the required payload format and the expected structure for successful responses.

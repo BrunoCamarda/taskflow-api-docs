@@ -1,0 +1,110 @@
+---
+title: "Quickstart"
+description: "Authenticate and execute your first Project and Task operations via the TaskFlow API."
+---
+
+This guide helps you authenticate with the TaskFlow API and make your first requests. By the end of this page, you will create a Project, add a Task to it, and check your Tasklist.
+
+
+## Prerequisites
+
+Before executing the steps below, ensure you have the following components ready:
+
+* **Your API Key:** You will need your Bearer token to authorize requests. If you don't have one yet, follow the [Authentication Guide](./authentication).
+
+
+## Step-by-Step Implementation Flow
+
+Follow this sequence to build your first TaskFlow pipeline.
+
+<Steps>
+  <Step title="Set up authentication">
+    TaskFlow uses Bearer Token authentication. Every request sent to the API must include the `Authorization` header with your API key. 
+    
+    Format your header like this:
+    ```bash
+    Authorization: Bearer <YOUR_API_KEY>
+    ```
+  </Step>
+
+  <Step title="Create your first Project">
+    Since a Task cannot exist independently, you must create a Project first. Run this command and copy the `id` from the response.
+
+    To see all payload details for this action, check the [Create a Project reference](./api-reference/create-project).
+
+    ```bash
+      curl -X POST "https://test-writechoice.onrender.com/projects" \
+      -H "Authorization: Bearer <YOUR_API_KEY>" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "name": "My First Project",
+        "description": "Testing the quickstart flow."
+      }'
+    ```
+  </Step>
+
+  <Step title="Add a Task to your Project">
+    Now, add a new Task to the Project you just created. 
+
+    To see all parameters and constraints for this action, check the [Create a Task reference](./api-reference/create-task).
+    
+    <Warning>
+      **Action Required:** Replace `<YOUR_GENERATED_PROJECT_ID>` in the request body below with the actual `id` you copied from Step 2.
+    </Warning>
+
+    ```bash
+    curl -X POST "https://test-writechoice.onrender.com/tasks" \
+    -H "Authorization: Bearer <YOUR_API_KEY>" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "project_id": "<YOUR_GENERATED_PROJECT_ID>",
+      "title": "Create my first Task",
+      "description": "Creating my first Project task."
+    }'
+    ```
+  </Step>
+
+  <Step title="Get your Tasklist">
+    Check if everything worked by fetching the Tasklist directly from your Project.
+
+    To understand sorting or filtering for this action, check the [List Tasks reference](./api-reference/list-tasks).
+
+    ```bash
+    curl -X GET "https://test-writechoice.onrender.com/projects/<YOUR_GENERATED_PROJECT_ID>/tasks" \
+    -H "Authorization: Bearer <YOUR_API_KEY>"
+    ```
+  </Step>
+</Steps>
+
+---
+
+## Expected Outcome
+
+A successful response will return a `200 OK` status with your **Tasklist**. New Tasks inside the list always start with a `pending` Status.
+
+```json
+{
+    "project_id": "4a25d875-4794...",
+    "total": 1,
+    "tasks": [
+        {
+            "task_id": "11f9b991-dace....",
+            "project_id": "4a25d875-4794...",
+            "title": "Create my first Task",
+            "description": "Creating my first Project task.",
+            "status": "pending",
+            "created_at": "2026-05...",
+            "updated_at": "2026-05..."
+        }
+    ]
+}
+```
+
+---
+
+## What's Next?
+
+Now that you've completed the basic flow, you can look into error handling or updating a Task:
+
+* [Learn how to handle API Errors](./errors)
+* [Explore how to update Task states via PATCH](./api-reference/update-task)

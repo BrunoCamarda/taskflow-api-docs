@@ -1,0 +1,41 @@
+---
+title: "Authentication"
+description: "Learn how to obtain and use your Bearer Token to authenticate with the TaskFlow API."
+---
+
+All requests sent to the TaskFlow API must be authenticated using a Bearer Token. Without a valid token, the API will reject the request with a `401 Unauthorized` error.
+
+
+## Obtaining your API Key
+
+To generate your Bearer Token, follow these steps within your TaskFlow account:
+
+1. Log in to the TaskFlow Dashboard.
+2. Navigate to **Workspace Settings** > **API Keys**.
+3. Click **Create New Key**.
+4. Give your key a descriptive name and select the appropriate permissions.
+5. Copy the generated key immediately. For security reasons, it will not be shown again.
+
+<Warning>
+  **Keep your key secure:** Your API key grants full access to your Projects and Tasks. Never commit it to public repositories or share it in client-side code.
+</Warning>
+
+
+## Using the Token
+
+To authenticate your requests, pass the token in the `Authorization` header of every HTTP request.
+
+```bash
+Authorization: Bearer <YOUR_API_KEY>
+```
+
+## Token Lifecycles and Rotation
+
+* **Expiration:** Production keys do not expire automatically unless a custom retention policy is configured during creation.
+* **Rotation:** If an API key is compromised, navigate to the Dashboard, select the key, and click **Revoke**. Generate a new key immediately to avoid service interruption.
+
+
+## Related Guides
+
+* Ready to make your first functional request? Check the [Quickstart](./quickstart).
+* Encountering authentication issues? Review the common resolutions in [Errors](./errors#authentication-failure-401-unauthorized).
