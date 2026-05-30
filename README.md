@@ -1,80 +1,33 @@
 # TaskFlow API Documentation
 
-Live URL: https://taskflow-ee7a8f0a.mintlify.app/
+**Live Documentation:** https://taskflow-ee7a8f0a.mintlify.app/
+---
 
-## Overview
-This repository contains the official documentation for the TaskFlow API. The goal of this project was to create a developer-centric, high-performance portal that translates complex architectural constraints into an intuitive, seamless integration experience.
+## **Project Overview**
+This repository holds the technical documentation for the TaskFlow API. My goal was to build a developer-first portal that strips away the complexity of the API's architecture and focuses on what actually matters: how to integrate it as quickly and intuitively as possible.
 
-## Workflow & Methodology
-To deliver this documentation, I followed a structured product-led approach:
+## **Workflow & Methodology**
+To deliver this project, I took a practical, product-oriented approach:
 
-* **API Analysis**: Conducted a deep dive into the TaskFlow API architecture, mapping resource hierarchies and operational constraints to ensure accurate documentation.
-* **Prototyping & Testing**: Validated endpoint behavior and lifecycle states to ensure the information provided is deterministic and reliable for developers.
-* **Documentation Architecture**: Designed a clear, logical structure that prioritizes developer experience (DX), focusing on reducing time-to-first-call (TTFC).
-* **Implementation (Mintlify)**: Leveraged Mintlify for the deployment, ensuring a modern, fast, and responsive UI. 
-    * *Note: I am also familiar with Docusaurus (an other static Doc site generators).*
-* **CI/CD Deployment**: Configured the repository for automated deployment, ensuring that documentation updates remain synchronized with the product lifecycle.
+* **API Analysis**: I started by digging into the TaskFlow architecture to map out resource hierarchies, identifying exactly what a developer needs to know to get started.
+* **Prototyping & Testing**: I validated the behavior of the endpoints and their lifecycles. **P.S.: I intentionally included a mock authentication doc to ensure the documentation covers security best practices right from the start.**
+* **Documentation Architecture**: I structured the content logically, focusing on reducing the Time-to-First-Call (TTFC) so developers can move from documentation to their first successful API call without friction.
+
+## **How to run locally**
+If you want to preview these docs on your machine, it is straightforward:
+
+1. Prerequisites: Ensure you have Node.js installed.
+2. Install the Mintlify CLI:
+```bash
+`npm i -g mint`
+```
+3. Start the server:
+```bash
+`mint dev`
+```
+4. View the site: Your browser will open the documentation at `http://localhost:3000`
 
 ## Technical Stack
-* **Framework**: Mintlify
-* **Language**: Markdown / MDX
-* **Version Control**: Git / GitHub
-
----
-*Built with focus on clarity, precision, and developer satisfaction.*
-
-# Mintlify Starter Kit
-
-Use the starter kit to get your docs deployed and ready to customize.
-
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
-
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
-
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
-
-## AI-assisted writing
-
-Set up your AI coding tool to work with Mintlify:
-
-```bash
-npx skills add https://mintlify.com/docs
-```
-
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the [AI tools guides](/ai-tools) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
-npm i -g mint
-```
-
-Run the following command at the root of your documentation, where your `docs.json` is located:
-
-```
-mint dev
-```
-
-View your local preview at `http://localhost:3000`.
-
-## Publishing changes
-
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
-
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+* Framework: Mintlify
+* Structure: Markdown / MDX
+* Version Control: Git & GitHub
